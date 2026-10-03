@@ -1,0 +1,20 @@
+
+{% extends "base.html" %}
+{% block title %}Register - NAT WORKS{% endblock %}
+{% block content %}
+<div class="auth-card">
+    <h1>STUDENT REGISTRATION</h1>
+    <form method="post">
+        <label>Username</label>
+        <input name="username" minlength="3" maxlength="80" required autocomplete="username">
+        <label>Email</label>
+        <input name="email" type="email" maxlength="150" required autocomplete="email">
+        <label>Password (minimum 8 characters)</label>
+        <input name="password" type="password" minlength="8" required autocomplete="new-password">
+        <label>Confirm Password</label>
+        <input name="confirm_password" type="password" minlength="8" required autocomplete="new-password">
+        <button type="submit">REGISTER</button>
+    </form>
+    <p>Already registered? <a href="{{ url_for('login') }}">Login</a></p>
+</div>
+{% endblock %}

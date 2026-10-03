@@ -1,0 +1,380 @@
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: #2d3036;
+    color: #eeeeee;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    color: #00aeef;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #ffcc00;
+}
+
+.announcement {
+    padding: 9px 14px;
+    background: white;
+    color: red;
+    font-family: Georgia, serif;
+    font-size: 20px;
+}
+
+.site-header {
+    background: #111111;
+    padding: 16px 4%;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #00b7ff;
+    font-size: clamp(28px, 5vw, 64px);
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.brand span {
+    color: #ff321f;
+}
+
+.brand small {
+    display: block;
+    color: #bbbbbb;
+    font-size: 11px;
+    letter-spacing: 4px;
+}
+
+.brand-logo {
+    width: 68px;
+    height: 68px;
+    display: grid;
+    place-items: center;
+    border: 3px solid #00b7ff;
+    color: #ff321f;
+    font-family: Georgia, serif;
+    font-size: 46px;
+}
+
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    background: linear-gradient(#28b2df, #08618b);
+    border-bottom: 1px solid #064b6d;
+}
+
+.navigation a {
+    display: block;
+    padding: 15px 17px;
+    border-right: 1px solid #07547a;
+    color: white;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.navigation a:hover {
+    background: #034b71;
+    color: #ffec7a;
+}
+
+.account-bar {
+    padding: 11px 5%;
+    background: #22252a;
+    color: #9fdfff;
+    text-align: right;
+    font-size: 13px;
+}
+
+.main-content {
+    width: min(1180px, 94%);
+    min-height: 65vh;
+    margin: 25px auto;
+}
+
+.welcome-panel {
+    padding: 32px;
+    background: #151515;
+    border: 1px solid #00aeef;
+    text-align: center;
+}
+
+.welcome-panel h1 {
+    color: #ff3928;
+    font-size: clamp(25px, 4vw, 42px);
+}
+
+.section-heading,
+.page-panel h1 {
+    color: #00aeef;
+}
+
+.section-heading {
+    margin-top: 30px;
+}
+
+.domain-grid,
+.branch-grid,
+.year-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 15px;
+    margin: 20px 0 35px;
+}
+
+.domain-card,
+.branch-card,
+.year-card {
+    padding: 23px;
+    border: 1px solid #168ebd;
+    background: #16181b;
+    color: #00b7ff;
+    transition: background 0.2s;
+}
+
+.domain-card:hover,
+.branch-card:hover,
+.year-card:hover {
+    background: #063d59;
+}
+
+.domain-card h3 {
+    font-size: 17px;
+}
+
+.card-icon {
+    font-size: 32px;
+    color: #ffcc00;
+}
+
+.branch-card span {
+    display: block;
+    margin-top: 10px;
+    color: #b5b5b5;
+    font-size: 13px;
+}
+
+.page-panel {
+    padding: 28px;
+    background: #ffffff;
+    color: #222222;
+    border: 1px solid #00aeef;
+    box-shadow: 0 5px 18px #171717;
+}
+
+.page-panel h1,
+.page-panel h2,
+.page-panel h3 {
+    color: #009fe3;
+}
+
+.breadcrumb {
+    color: #666666;
+    font-size: 13px;
+}
+
+.auth-card {
+    width: min(440px, 100%);
+    margin: 35px auto;
+    padding: 30px;
+    background: white;
+    color: #222;
+    border-radius: 5px;
+    box-shadow: 0 5px 20px #111;
+}
+
+.auth-card h1 {
+    color: #009fe3;
+    font-size: 24px;
+    text-align: center;
+}
+
+.auth-card form,
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.auth-card label,
+.upload-form label {
+    font-weight: bold;
+    margin-top: 7px;
+}
+
+.auth-card input,
+.upload-form input,
+.upload-form select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bbbbbb;
+    border-radius: 3px;
+    font-size: 15px;
+}
+
+button,
+.small-button {
+    display: inline-block;
+    padding: 11px 17px;
+    border: none;
+    background: #009fe3;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+button:hover,
+.small-button:hover {
+    background: #08769f;
+    color: white;
+}
+
+.auth-card button,
+.upload-form button {
+    margin-top: 12px;
+}
+
+.notice {
+    margin: 12px 0;
+    padding: 12px;
+    background: #fff3cd;
+    border-left: 4px solid #e1a700;
+    color: #533f03;
+}
+
+.pdf-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 18px;
+}
+
+.pdf-item {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 15px;
+    border: 1px solid #dddddd;
+    background: #f6f8fa;
+}
+
+.pdf-icon {
+    padding: 8px;
+    background: #c62828;
+    color: white;
+    font-weight: bold;
+}
+
+.pdf-details {
+    flex: 1;
+    min-width: 150px;
+    color: #222;
+}
+
+.pdf-details strong,
+.pdf-details small {
+    display: block;
+}
+
+.pdf-details small {
+    margin-top: 5px;
+    color: #666;
+}
+
+.secondary {
+    background: #555d66;
+}
+
+.danger-button {
+    background: #c62828;
+}
+
+.compiler-page {
+    background: #ffffff;
+}
+
+.compiler-controls {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.compiler-controls select {
+    padding: 10px;
+    font-size: 15px;
+}
+
+#code {
+    display: block;
+    width: 100%;
+    height: 390px;
+    padding: 18px;
+    background: #0b0b0b;
+    color: #00ff66;
+    border: 1px solid #555;
+    font-family: Consolas, monospace;
+    font-size: 15px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+#output {
+    min-height: 120px;
+    overflow: auto;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    padding: 18px;
+    background: #111111;
+    color: #00ff66;
+    font-family: Consolas, monospace;
+}
+
+#htmlPreview {
+    width: 100%;
+    min-height: 280px;
+    background: white;
+    border: 1px solid #aaa;
+}
+
+.compiler-note {
+    color: #555;
+    font-size: 13px;
+}
+
+footer {
+    padding: 24px 12px;
+    background: #111111;
+    color: #bbbbbb;
+    text-align: center;
+}
+
+@media (max-width: 650px) {
+    .navigation a {
+        flex: 1 1 45%;
+        text-align: center;
+    }
+
+    .page-panel {
+        padding: 16px;
+    }
+
+    .auth-card {
+        padding: 22px;
+    }
+
+    .pdf-item {
+        align-items: flex-start;
+    }
+}

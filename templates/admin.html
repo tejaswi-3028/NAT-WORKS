@@ -1,0 +1,98 @@
+
+{% extends "base.html" %}
+{% block title %}Admin Panel - NAT WORKS{% endblock %}
+{% block content %}
+<div class="page-panel">
+    <h1>ADMIN PANEL — MANAGE PDFS</h1>
+    <p>Upload college resources for the selected domain, branch and year.</p>
+
+    <form method="post" enctype="multipart/form-data" class="upload-form">
+        <label>PDF Title</label>
+        <input name="title" required maxlength="200" placeholder="Example: Data Structures Notes">
+
+        <label>Domain</label>
+        <select name="domain" id="domain" required>
+            {% for d in domains %}
+            <option value="{{ d }}">{{ d }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Branch / Placement Category</label>
+        <select name="branch" id="branch" required>
+            {% for b in branches %}
+            <option value="{{ b }}">{{ b }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Year</label>
+        <select name="year" id="year" required>
+            {% for y in years %}
+            <option value="{{ y }}">{{ y }}{% if y == "1" %}st{% elif y == "2" %}nd{% elif y == "3" %}rd{% else %}th{% endif %} Year</option>
+            {% endfor %}
+        </select>
+
+        <label>Select PDF (maximum 20 MB)</label>
+        <input type="file" name="pdf" accept=".pdf,application/pdf" required>
+
+        <button type="submit">UPLOAD PDF</button>
+    </form>
+
+    <h2>Uploaded PDFs</h2>
+    {% if pdfs %}
+    <div class="pdf-list">
+        {% for pdf in pdfs %}
+        <div class="pdf-item">
+            <div class="pdf-details">
+                <strong>{{ pdf.title }}</strong>
+                <small>{{ pdf.domain }} / {{ pdf.branch }} / {{ pdf.year }}</small>
+            </div>
+            <a class="small-button" href="{{ url_for('view_pdf', pdf_id=pdf.id) }}" target="_blank" rel="noopener">VIEW</a>
+            <form method="post" action="{{ url_for('delete_pdf', pdf_id=pdf.id) }}"
+                  onsubmit="return confirm('Delete this PDF?')">
+                <button class="danger-button" type="submit">DELETE</button>
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <p>No PDFs uploaded yet.</p>
+    {% endif %}
+</div>
+
+<script>
+const domainSelect = document.getElementById("domain");
+const branchSelect = document.getElementById("branch");
+const yearSelect = document.getElementById("year");
+
+const normalBranches = [
+    "CSE", "IOT", "CSIT", "IT", "AIML", "AIDS",
+    "ECE", "VLSI", "EEE", "Mechanical", "Civil"
+];
+
+const placementBranches = ["CSE Alliances", "Non IT"];
+
+function updateUploadFields() {
+    const placement = domainSelect.value === "Placement Papers";
+    const options = placement ? placementBranches : normalBranches;
+
+    branchSelect.replaceChildren();
+    options.forEach(name => {
+        const option = document.createElement("option");
+        option.value = name;
+        option.textContent = name;
+        branchSelect.appendChild(option);
+    });
+
+    yearSelect.replaceChildren();
+    (placement ? ["-"] : ["1", "2", "3", "4"]).forEach(value => {
+        const option = document.createElement("option");
+        option.value = value;
+        option.textContent = value === "-" ? "Not applicable" : value + " Year";
+        yearSelect.appendChild(option);
+    });
+}
+
+domainSelect.addEventListener("change", updateUploadFields);
+updateUploadFields();
+</script>
+{% endblock %}

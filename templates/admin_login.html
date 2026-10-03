@@ -1,0 +1,17 @@
+
+{% extends "base.html" %}
+{% block title %}Admin Login - NAT WORKS{% endblock %}
+{% block content %}
+<div class="auth-card">
+    <h1>ADMIN LOGIN</h1>
+    <p>Only authorized administrators can upload or delete PDFs.</p>
+    <form method="post">
+        <label>Admin Username</label>
+        <input name="username" required autocomplete="username">
+        <label>Admin Password</label>
+        <input name="password" type="password" required autocomplete="current-password">
+        <button type="submit">ADMIN LOGIN</button>
+    </form>
+    <p><a href="{{ url_for('login') }}">Student Login</a></p>
+</div>
+{% endblock %}

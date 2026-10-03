@@ -1,0 +1,55 @@
+
+{% extends "base.html" %}
+{% block title %}{{ branch }} - {{ domain }}{% endblock %}
+{% block content %}
+<div class="page-panel">
+    <p class="breadcrumb">
+        <a href="{{ url_for('home') }}">Home</a> /
+        <a href="{{ url_for('domain_page', domain=domain) }}">{{ domain }}</a> /
+        {{ branch }}
+    </p>
+
+    <h1>{{ domain }} — {{ branch }}</h1>
+
+    {% if selected_year is none %}
+        {% if years %}
+            <h2>Select Year</h2>
+            <div class="year-grid">
+                {% for year in years %}
+                <a class="year-card" href="{{ url_for('resource_page', domain=domain, branch=branch, year=year) }}">
+                    {{ year }}{% if year == "1" %}st{% elif year == "2" %}nd{% elif year == "3" %}rd{% else %}th{% endif %} Year
+                </a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No resources available yet.</p>
+        {% endif %}
+    {% else %}
+        <h2>
+            {% if selected_year != "-" %}
+                {% if selected_year == "1" %}1st{% elif selected_year == "2" %}2nd{% elif selected_year == "3" %}3rd{% else %}4th{% endif %} Year
+            {% else %}
+                {{ branch }}
+            {% endif %}
+            PDFs
+        </h2>
+        {% if pdfs %}
+            <div class="pdf-list">
+                {% for pdf in pdfs %}
+                <div class="pdf-item">
+                    <span class="pdf-icon">PDF</span>
+                    <div class="pdf-details">
+                        <strong>{{ pdf.title }}</strong>
+                        <small>{{ domain }} / {{ branch }} / {{ selected_year }}</small>
+                    </div>
+                    <a class="small-button" href="{{ url_for('view_pdf', pdf_id=pdf.id) }}" target="_blank" rel="noopener">VIEW</a>
+                    <a class="small-button secondary" href="{{ url_for('download_pdf', pdf_id=pdf.id) }}">DOWNLOAD</a>
+                </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No PDFs have been uploaded for this selection yet.</p>
+        {% endif %}
+    {% endif %}
+</div>
+{% endblock %}

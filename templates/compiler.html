@@ -1,0 +1,41 @@
+
+{% extends "base.html" %}
+{% block title %}Learn Programming - NAT WORKS{% endblock %}
+{% block head %}
+<script src="{{ url_for('static', filename='compiler.js') }}" defer></script>
+{% endblock %}
+{% block content %}
+<div class="page-panel compiler-page">
+    <h1>LEARN PROGRAMMING</h1>
+    <p>Write code, practice programming and view the output.</p>
+
+    <div class="compiler-controls">
+        <label for="language">Language</label>
+        <select id="language">
+            <option value="python">Python</option>
+            <option value="javascript">JavaScript</option>
+            <option value="c">C</option>
+            <option value="cpp">C++</option>
+            <option value="java">Java</option>
+            <option value="html">HTML Preview</option>
+        </select>
+        <button type="button" id="runButton">RUN CODE</button>
+        <button type="button" id="clearButton" class="secondary">CLEAR OUTPUT</button>
+    </div>
+
+    <textarea id="code" spellcheck="false" aria-label="Code editor">print("Welcome to NAT WORKS!")</textarea>
+
+    <h3>OUTPUT</h3>
+    <pre id="output">Your program output will appear here.</pre>
+
+    <section id="htmlPreviewSection" hidden>
+        <h3>HTML PREVIEW</h3>
+        <iframe id="htmlPreview" title="HTML preview" sandbox=""></iframe>
+    </section>
+
+    <p class="compiler-note">
+        Do not enter passwords or private information in code. Remote code execution
+        requires an external service and an internet connection.
+    </p>
+</div>
+{% endblock %}

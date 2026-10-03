@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+{% block title %}Home - NAT WORKS{% endblock %}
+{% block content %}
+<section class="welcome-panel">
+    <h1>WELCOME TO NAT WORKS</h1>
+    <p>Your one-stop destination for college study materials.</p>
+    <p>Select a domain below to explore resources by branch and year.</p>
+</section>
+
+<h2 class="section-heading">STUDY RESOURCE DOMAINS</h2>
+<div class="domain-grid">
+    {% for item in domains %}
+    <a class="domain-card" href="{{ url_for('domain_page', domain=item) }}">
+        <span class="card-icon">▤</span>
+        <h3>{{ item }}</h3>
+        <p>Explore study resources</p>
+    </a>
+    {% endfor %}
+    <a class="domain-card compiler-card" href="{{ url_for('compiler') }}">
+        <span class="card-icon">&lt;/&gt;</span>
+        <h3>LEARN PROGRAMMING</h3>
+        <p>Practice coding online</p>
+    </a>
+</div>
+{% endblock %}

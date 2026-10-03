@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}NAT WORKS{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <div class="announcement">WELCOME TO NAT WORKS — YOUR COLLEGE RESOURCE PORTAL</div>
+
+    <header class="site-header">
+        <div class="brand">
+            <div class="brand-logo">N</div>
+            <div><span>NAT</span> WORKS<small>LEARN • PRACTICE • GROW</small></div>
+        </div>
+    </header>
+
+    <nav class="navigation">
+        <a href="{{ url_for('home') }}">HOME</a>
+        {% if session.get('student_id') %}
+            <a href="{{ url_for('domain_page', domain='Syllabus') }}">SYLLABUS</a>
+            <a href="{{ url_for('domain_page', domain='Notes') }}">NOTES</a>
+            <a href="{{ url_for('domain_page', domain='Materials') }}">MATERIALS</a>
+            <a href="{{ url_for('domain_page', domain='Lab Manuals') }}">LAB MANUALS</a>
+            <a href="{{ url_for('domain_page', domain='Question Papers') }}">QUESTION PAPERS</a>
+            <a href="{{ url_for('domain_page', domain='Placement Papers') }}">PLACEMENT PAPERS</a>
+            <a href="{{ url_for('compiler') }}">LEARN PROGRAMMING</a>
+            <a href="{{ url_for('logout') }}">LOGOUT</a>
+        {% else %}
+            <a href="{{ url_for('login') }}">STUDENT LOGIN</a>
+            <a href="{{ url_for('register') }}">REGISTER</a>
+            <a href="{{ url_for('admin_login') }}">ADMIN</a>
+        {% endif %}
+    </nav>
+
+    <div class="account-bar">
+        {% if session.get('student_id') %}
+            Student: {{ session.get('username') }}
+        {% elif session.get('admin_id') %}
+            Admin: {{ session.get('admin_username') }}
+            | <a href="{{ url_for('admin_logout') }}">Admin Logout</a>
+            | <a href="{{ url_for('admin_panel') }}">Admin Panel</a>
+        {% else %}
+            College Resources Portal
+        {% endif %}
+    </div>
+
+    <main class="main-content">
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <div class="notice">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>© NAT WORKS | College Learning Resources</footer>
+</body>
+</html>

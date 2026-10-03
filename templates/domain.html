@@ -1,0 +1,18 @@
+
+{% extends "base.html" %}
+{% block title %}{{ domain }} - NAT WORKS{% endblock %}
+{% block content %}
+<div class="page-panel">
+    <p class="breadcrumb"><a href="{{ url_for('home') }}">Home</a> / {{ domain }}</p>
+    <h1>{{ domain }}</h1>
+    <p>Select your branch or placement category.</p>
+    <div class="branch-grid">
+        {% for branch in branches %}
+        <a class="branch-card" href="{{ url_for('year_page', domain=domain, branch=branch) }}">
+            {{ branch }}
+            <span>Explore →</span>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

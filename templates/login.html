@@ -1,0 +1,17 @@
+
+{% extends "base.html" %}
+{% block title %}Student Login - NAT WORKS{% endblock %}
+{% block content %}
+<div class="auth-card">
+    <h1>STUDENT LOGIN</h1>
+    <form method="post">
+        <label>Username</label>
+        <input name="username" required autocomplete="username">
+        <label>Password</label>
+        <input name="password" type="password" required autocomplete="current-password">
+        <button type="submit">LOGIN</button>
+    </form>
+    <p>New student? <a href="{{ url_for('register') }}">Create an account</a></p>
+    <p><a href="{{ url_for('admin_login') }}">Admin Login</a></p>
+</div>
+{% endblock %}
